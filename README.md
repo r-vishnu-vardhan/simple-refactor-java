@@ -1,21 +1,25 @@
 # Refactoring Java
+- [x] Restructured class RentalInfo into service folder structure and used this class to have business logic which will generate and return statement with rented movie details, rental amount, loyaltypoints belong to Customer.
+- [x] Moved Entities into models folder which gives a better view for peers to identify easily and work.
+- [x] used suitable naming conventions for variables and methods.
+- [x] Used appropriate data types wherever possible, especially in the constructors of classes.
+- [x] Made sure that all fields are private except those needed by other entities or services.
+- [x] Added getters/setters as necessary (if any).
+- [x] Removed unnecessary code from constructor bodies if it is not required anymore after refactoring.
 
-The code creates an information slip about movie rentals.
-Rewrite and improve the code after your own liking.
 
-Think: you are responsible for the solution, this is a solution you will have to put your name on.
+# Other thoughts and Inprogess implementations
+- [x] Current code is a simple refactoring of existing which is provided
+- [x] Rewriting this usecase to achieve using SpringBoot, Microservice Architecture, H2 Database and JPA. I will patch that repository in soon.
 
-
-## Handing in the assignment
-
-Reason how you have been thinking and the decisions you took. 
-You can hand in the result any way you feel (git patch, pull-request or ZIP-file).
-Note: the Git history must be included.
-
+# Insights of Microservices Architecture approach
+- [x] H2 database to manage Data
+- [x] Implementation of respective controller, service and repository classes
+- [x] Exception Handling
+- [x] Dynamic calculation of billing and loyalty points based on Rentals
 
 ## To run the test:
 
 ```
-javac src/*.java
-java -cp src Main
+Run main method in Main Class 
 ```
