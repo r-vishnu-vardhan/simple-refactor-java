@@ -28,16 +28,15 @@ public class RentalInfo {
 
     public String statement(Customer customer) {
         AtomicReference<Double> totalAmount = new AtomicReference<>((double) 0);
-        AtomicInteger frequentEnterPoints = new AtomicInteger();
+        AtomicInteger loyaltyPoints = new AtomicInteger();
         StringBuilder result = new StringBuilder("Rental Record for ").append(customer.getName()).append("\n");
         customer.getRentals().forEach(movieRental -> {
-
             if (movies.containsKey(movieRental.getMovieId()) && movieRental.getDays() > 0) {
                 Movie movie = movies.get(movieRental.getMovieId());
-                double amountForThisMovie = calculateAmount(movie.getCode(), movieRental.getDays());
-                frequentEnterPoints.getAndIncrement();
-                if (movie.getCode().equals("new") && movieRental.getDays() > 2) {
-                    frequentEnterPoints.getAndIncrement();
+                double amountForThisMovie = calculateAmount(movie.getCategory(), movieRental.getDays());
+                loyaltyPoints.getAndIncrement();
+                if (movie.getCategory().equals("new") && movieRental.getDays() > 2) {
+                    loyaltyPoints.getAndIncrement();
                 }
                 result.append("\t").append(movie.getTitle()).append("\t").append(amountForThisMovie).append("\n");
                 totalAmount.updateAndGet(v -> v + amountForThisMovie);
@@ -45,13 +44,13 @@ public class RentalInfo {
                 throw new RuntimeException("Movie with id: " + movieRental.getMovieId() + " is not present in the Database or the number of days the movie is to be rented should be more than 0");
         });
         result.append("Amount owed is ").append(totalAmount).append("\n");
-        result.append("You earned ").append(frequentEnterPoints).append(" frequent points\n");
+        result.append("You earned ").append(loyaltyPoints).append(" frequent points\n");
         return result.toString();
     }
 
-    private double calculateAmount(String movieCode, int rentalDays) {
+    private double calculateAmount(String movieCategory, int rentalDays) {
         double amount = 0;
-        switch (movieCode) {
+        switch (movieCategory) {
             case REGULAR:
                 amount = 2;
                 if (rentalDays > 2) {

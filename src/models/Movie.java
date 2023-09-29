@@ -2,19 +2,18 @@ package models;
 
 public class Movie {
     private final String title;
-    private final String code;
+    private final String category;
 
-    public Movie(String title, String code) {
-
+    public Movie(String title, String category) {
         this.title = title;
-        this.code = code;
+        this.category = category;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getCode() {
-        return code;
+    public String getCategory() {
+        return category;
     }
 }
